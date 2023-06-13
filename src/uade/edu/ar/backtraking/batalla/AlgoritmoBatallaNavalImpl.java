@@ -62,7 +62,7 @@ public class AlgoritmoBatallaNavalImpl implements AlgoritmoBatallaNaval{
 				pos.add(ubicacion);
 				return true;
 			}
-			else if (mapa[ubicacionX][ubicacionY] != embarcacion[etapa] || ubicacionX<0 || ubicacionX>mapa.length -1  || ubicacionY<0 || ubicacionY>mapa[0].length) { //ubicacionX<0 || ubicacionX>mapa.length  || ubicacionY<0 || ubicacionY>mapa[0].length || 
+			else if (mapa[ubicacionX][ubicacionY] != embarcacion[etapa] || ubicacionX<0 || ubicacionX>mapa.length -1  || ubicacionY<0 || ubicacionY>mapa[0].length) {
 				
 				pos.clear();;
 				return false;
