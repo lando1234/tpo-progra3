@@ -17,30 +17,29 @@ public class AlgoritmoBatallaNavalImpl implements AlgoritmoBatallaNaval{
 			 ubicacion.setX(i);	
 			 for (int j = ubicacionY ; j<m ; j++) {
 				 ubicacion.setY(j);	 
-				// Object c= mapa[i][j];
-				 if ( mapa[i][j] == embarcacion[0] )  { //&& c instanceof Character
+				 if ( mapa[i][j] == embarcacion[0] )  { 
 					
-					 if (embarcacion.length <= n-i) {
+					 if (embarcacion.length <= m-j) {
 						
 						 if (buscarEmbarcacion(mapa, embarcacion, ubicacion.getX() , ubicacion.getY()+1, "horizontal", 1, pos)){
-							 Resultado resultado = new Resultado(pos);
-							 System.out.println("pos"+ pos.get(0));
+							pos.add(0, ubicacion); 
+							Resultado resultado = new Resultado(pos);
 							 return resultado;
 						 }
 					 }
-					 if (embarcacion.length <= m-j) {
+					 if (embarcacion.length <= n-i) {
 						 
 						 if (buscarEmbarcacion(mapa, embarcacion,ubicacion.getX() +1, ubicacion.getY() , "vertical", 1, pos)){
-							 Resultado resultado = new Resultado(pos);
-							 System.out.println("pos"+ pos.get(0));
+							pos.add(0, ubicacion); 
+							Resultado resultado = new Resultado(pos);
 							 return resultado;
 						 }
 					 }
-					 if (embarcacion.length <= n-i && embarcacion.length <= m-j) {
+					 if (embarcacion.length <= m-j && embarcacion.length <= n-i) {
 						
 						 if (buscarEmbarcacion(mapa, embarcacion,ubicacion.getX() +1, ubicacion.getY()+1 , "diagonal", 1, pos)){
-							 Resultado resultado = new Resultado(pos);
-							 System.out.println("pos"+ pos.get(0));
+							pos.add(0, ubicacion); 
+							Resultado resultado = new Resultado(pos);
 							 return resultado;
 					 }
 				 }
@@ -58,8 +57,6 @@ public class AlgoritmoBatallaNavalImpl implements AlgoritmoBatallaNaval{
 	 private boolean buscarEmbarcacion(char [][] mapa, char[]embarcacion,int ubicacionX, int ubicacionY, String direccion, int etapa, List<Ubicacion> pos) {
 		
 		 Ubicacion ubicacion = new Ubicacion(ubicacionX,ubicacionY);
-	
-		// Object c= mapa[ubicacionX][ubicacionY];
 		 
 			if (etapa == embarcacion.length -1 && mapa[ubicacionX][ubicacionY]== embarcacion[etapa]) {
 				pos.add(ubicacion);
@@ -67,11 +64,10 @@ public class AlgoritmoBatallaNavalImpl implements AlgoritmoBatallaNaval{
 			}
 			else if (mapa[ubicacionX][ubicacionY] != embarcacion[etapa] || ubicacionX<0 || ubicacionX>mapa.length -1  || ubicacionY<0 || ubicacionY>mapa[0].length) { //ubicacionX<0 || ubicacionX>mapa.length  || ubicacionY<0 || ubicacionY>mapa[0].length || 
 				
-				pos= null;
+				pos.clear();;
 				return false;
 			}
 			else { 
-				//if (c instanceof Character){
 				if (direccion=="horizontal") {
 					pos.add(ubicacion);
 					
